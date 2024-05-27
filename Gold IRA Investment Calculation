@@ -1,0 +1,20 @@
+class GoldIRA:
+    def __init__(self, price, init_oz, annual_oz, years, increase_pct):
+        self.price = price
+        self.oz = init_oz
+        self.annual_oz = annual_oz
+        self.years = years
+        self.increase_pct = increase_pct
+
+    def calc_retirement_value(self):
+        for _ in range(self.years):
+            self.price += self.price * self.increase_pct / 100
+            self.oz += self.annual_oz
+        return self.oz * self.price
+
+    def display(self):
+        value = self.calc_retirement_value()
+        print(f"Gold IRA value at retirement: ${value:,.2f}")
+
+ira = GoldIRA(1800, 50, 5, 30, 2)
+ira.display()
